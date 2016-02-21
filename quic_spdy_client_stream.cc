@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
-#include "net/tools/quic/quic_spdy_client_stream.h"
+#include "net/tools/quic/d0020e_libquic/quic_spdy_client_stream.h"
 
 #include "base/logging.h"
 #include "base/stl_util.h"

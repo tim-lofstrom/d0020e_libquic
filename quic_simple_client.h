@@ -19,7 +19,7 @@
 #include "net/log/net_log.h"
 #include "net/quic/quic_config.h"
 #include "net/quic/quic_packet_reader.h"
-#include "net/quic/quic_spdy_stream.h"
+#include "net/tools/quic/d0020e_libquic/quic_spdy_stream.h"
 #include "net/tools/quic/quic_client_base.h"
 
 namespace net {

@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "net/tools/quic/quic_spdy_server_stream.h"
+#include "net/tools/quic/d0020e_libquic/quic_spdy_server_stream.h"
 
 #include "base/logging.h"
 #include "base/stl_util.h"
@@ -12,8 +12,8 @@
 #include "base/strings/string_piece.h"
 #include "base/strings/string_split.h"
 #include "net/quic/quic_flags.h"
-#include "net/quic/quic_spdy_session.h"
-#include "net/quic/quic_spdy_stream.h"
+#include "net/tools/quic/d0020e_libquic/quic_spdy_session.h"
+#include "net/tools/quic/d0020e_libquic/quic_spdy_stream.h"
 #include "net/quic/spdy_utils.h"
 #include "net/spdy/spdy_protocol.h"
 #include "net/tools/quic/quic_in_memory_cache.h"

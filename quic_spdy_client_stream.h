@@ -11,8 +11,9 @@
 #include "base/basictypes.h"
 #include "base/strings/string_piece.h"
 #include "net/quic/quic_protocol.h"
-#include "net/quic/quic_spdy_stream.h"
+#include "net/tools/quic/d0020e_libquic/quic_spdy_stream.h"
 #include "net/spdy/spdy_framer.h"
+
 
 namespace net {
 namespace tools {
