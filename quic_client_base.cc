@@ -65,33 +65,6 @@ bool QuicClientBase::EncryptionBeingEstablished() {
          session_->connection()->connected();
 }
 
-/**
- * kurt code here
- */
-
-QuicClientSession* QuicClientBase::kurt_CreateQuicClientSession(
-    QuicConnection* connection) {
-  kurt_session_.reset(
-      new QuicClientSession(config_, connection, server_id_, &crypto_config_));
-  if (initial_max_packet_length_ != 0) {
-    kurt_session()->connection()->SetMaxPacketLength(initial_max_packet_length_);
-  }
-  return kurt_session_.get();
-}
-
-ReliableQuicStream* QuicClientBase::kurt_CreateReliableClientStream() {
-  if (!connected()) {
-    return nullptr;
-  }
-
-  /**
-   * CreateOutgoingDynamicStream is located in quic_client_session
-   */
-  return session_->kurt_CreateOutgoingDynamicStream();
-}
-/*
- * Kurt code end here
- */
 
 QuicSpdyClientStream* QuicClientBase::CreateReliableClientStream() {
   if (!connected()) {

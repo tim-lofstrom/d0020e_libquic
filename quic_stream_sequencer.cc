@@ -58,6 +58,7 @@ void QuicStreamSequencer::OnStreamFrame(const QuicStreamFrame& frame) {
 	 * Kurt code
 	 *
 	 */
+	cout << "before ondata" << endl;
 		stream_->OnDataAvailable();
 
 
@@ -72,12 +73,15 @@ void QuicStreamSequencer::OnStreamFrame(const QuicStreamFrame& frame) {
     // Stream frames must have data or a fin flag.
     stream_->CloseConnectionWithDetails(QUIC_INVALID_STREAM_FRAME,
                                         "Empty stream frame without FIN set.");
+
+    cout << "invalid stream frame, closing " << endl;
     return;
   }
 
   if (frame.fin) {
     CloseStreamAtOffset(frame.offset + data_len);
     if (data_len == 0) {
+    	cout << "frame fin and data is 0 " << endl;
       return;
     }
   }
@@ -88,6 +92,8 @@ void QuicStreamSequencer::OnStreamFrame(const QuicStreamFrame& frame) {
   if (result == QUIC_INVALID_STREAM_DATA) {
     stream_->CloseConnectionWithDetails(
         QUIC_INVALID_STREAM_FRAME, "Stream frame overlaps with buffered data.");
+
+    cout << "incalid stream frame, overlap"	<< endl;
     return;
   }
   if (result == QUIC_NO_ERROR && bytes_written == 0) {

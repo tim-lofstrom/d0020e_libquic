@@ -67,7 +67,6 @@ class QuicClientBase {
   // Returns a newly created QuicSpdyClientStream, owned by the
   // QuicSimpleClient.
   QuicSpdyClientStream* CreateReliableClientStream();
-  ReliableQuicStream* kurt_CreateReliableClientStream();
 
   // Wait for events until the stream with the given ID is closed.
   void WaitForStreamToClose(QuicStreamId id);
@@ -80,7 +79,6 @@ class QuicClientBase {
   virtual bool WaitForEvents() = 0;
 
   QuicClientSession* session() { return session_.get(); }
-  QuicClientSession* kurt_session() { return kurt_session_.get(); }
 
   bool connected() const;
   bool goaway_received() const;
@@ -171,9 +169,6 @@ class QuicClientBase {
   virtual QuicClientSession* CreateQuicClientSession(
       QuicConnection* connection);
 
-  virtual QuicClientSession* kurt_CreateQuicClientSession(
-        QuicConnection* connection);
-
   // Generates the next ConnectionId for |server_id_|.  By default, if the
   // cached server config contains a server-designated ID, that ID will be
   // returned.  Otherwise, the next random ID will be returned.
@@ -202,7 +197,6 @@ class QuicClientBase {
 
   // Session which manages streams.
   scoped_ptr<QuicClientSession> session_;
-  scoped_ptr<QuicClientSession> kurt_session_;
 
   // This vector contains QUIC versions which we currently support.
   // This should be ordered such that the highest supported version is the first

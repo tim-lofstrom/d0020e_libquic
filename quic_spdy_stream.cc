@@ -84,10 +84,10 @@ size_t QuicSpdyStream::WriteHeaders(
   return bytes_written;
 }
 
+// Used by writer to tell he is done and we will close
 size_t QuicSpdyStream::fake_WriteHeaders(bool fin) {
 
   if (fin) {
-    // TODO(rch): Add test to ensure fin_sent_ is set whenever a fin is sent.
     set_fin_sent(true);
     CloseWriteSide();
   }
@@ -185,7 +185,6 @@ void QuicSpdyStream::OnClose() {
  * kurt made
  */
 bool QuicSpdyStream::FinishedReadingHeaders() const {
-//  return headers_decompressed_ && decompressed_headers_.empty();
 	return true;
 }
 

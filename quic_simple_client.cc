@@ -35,7 +35,6 @@ namespace net {
 namespace tools {
 
 void QuicSimpleClient::ClientQuicDataToResend::Resend() {
-//  client_->SendRequest(*headers_, body_, fin_);
   delete headers_;
   headers_ = nullptr;
 }
@@ -401,58 +400,6 @@ bool QuicSimpleClient::OnPacket(const QuicEncryptedPacket& packet,
   return true;
 }
 
-//void QuicSimpleClient::SendRequest(const HttpRequestInfo& headers,
-//                                   StringPiece body,
-//                                   bool fin) {
-//  QuicSpdyClientStream* stream = CreateReliableClientStream();
-//
-//
-//
-//  if (stream == nullptr) {
-//    LOG(DFATAL) << "stream creation failed!";
-//    return;
-//  }
-////  SpdyHeaderBlock header_block;
-////  CreateSpdyHeadersFromHttpRequest(headers, headers.extra_headers, net::HTTP2,
-////                                   true, &header_block);
-//  stream->set_visitor(this);
-//
-//
-//  cout << "sending request" << endl;
-//
-//
-//  stream->SendData(body);
-////  stream->SendRequest(header_block, body, fin);
-//
-////  if (FLAGS_enable_quic_stateless_reject_support) {
-////    // Record this in case we need to resend.
-////    auto new_headers = new HttpRequestInfo;
-////    *new_headers = headers;
-////    auto data_to_resend =
-////        new ClientQuicDataToResend(new_headers, body, fin, this);
-////    MaybeAddQuicDataToResend(data_to_resend);
-////  }
-//}
-
-//void QuicSimpleClient::SendRequestAndWaitForResponse(
-//    const HttpRequestInfo& request,
-//    StringPiece body,
-//    bool fin) {
-////  SendRequest(request, body, fin);
-//  while (WaitForEvents()) {}
-//}
-
-//void QuicSimpleClient::SendRequestsAndWaitForResponse(
-//    const base::CommandLine::StringVector& url_list) {
-//  for (size_t i = 0; i < url_list.size(); ++i) {
-//    HttpRequestInfo request;
-//    request.method = "GET";
-//    request.url = GURL(url_list[i]);
-////    SendRequest(request, "", true);
-//  }
-//
-//  while (WaitForEvents()) {}
-//}
 
 }  // namespace tools
 }  // namespace net
