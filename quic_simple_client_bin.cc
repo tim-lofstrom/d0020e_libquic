@@ -27,6 +27,8 @@
 
 #include "net/tools/quic/d0020e_libquic/quic_simple_client.h"
 
+#include "net/tools/quic/d0020e_libquic/loopback.h"
+
 using base::StringPiece;
 using net::CertVerifier;
 using net::CTVerifier;
@@ -156,18 +158,48 @@ int main(int argc, char *argv[]) {
 
 	dataToSend = "Hej Servern From Client.";
 
-	client.SendData(dataToSend);
-	client.SendData("123");
-	client.SendData("456");
-	client.SendData("789");
-	client.WaitForData();
 
-	cout << endl;
-	cout << "Sent from client:" << endl;
-	cout << "body: " << dataToSend << endl;
-	cout << endl;
-	cout << "Response from server:" << endl;
-	cout << "body: " << client.latest_response_body() << endl;
+//	//inititiera LoopBackInterface
+//
+//	cout << "Initiating loopback interface" << endl;
+//	scoped_ptr<net::tools::LoopBack> lb(new net::tools::LoopBack());
+
+	//while (data)
+//	{
+
+//		client.SendData("null");
+
+		client.IperfTester();
+
+		//Readfrom loopbackInterface
+
+		//Send the readdata via client.SendData
+//	}
+
+
+
+
+
+//	client.SendData("123");
+//	client.SendData("456");
+//	client.SendData("789");
+//	client.WaitForData();
+
+
+
+	// locking procedure, waits for data
+//	string d = client.RecvData();
+
+
+//	cout << endl;
+//	cout << "Sent from client:" << endl;
+//	cout << "body: " << dataToSend << endl;
+//	cout << endl;
+//	cout << "Response from server:" << endl;
+//	cout << "body: " << client.latest_response_body() << endl;
+//
+//
+//	lb->WriteToIPERF(client.latest_response_body());
 
 	return 0;
 }

@@ -180,6 +180,12 @@ void QuicSpdyStream::OnClose() {
   }
 }
 
+void QuicSpdyStream::OnData(string data){
+	cout << "data in spdystream " << data << endl;
+
+	visitor_->OnData(data);
+}
+
 /**
  *
  * kurt made

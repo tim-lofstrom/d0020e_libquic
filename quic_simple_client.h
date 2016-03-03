@@ -21,6 +21,8 @@
 #include "net/quic/quic_packet_reader.h"
 #include "net/tools/quic/d0020e_libquic/quic_spdy_stream.h"
 
+#include "net/tools/quic/d0020e_libquic/loopback.h"
+
 //fel from this
 #include "net/tools/quic/d0020e_libquic/quic_client_base.h"
 
@@ -143,6 +145,8 @@ class QuicSimpleClient : public QuicClientBase,
 
   // QuicSpdyStream::Visitor
   void OnClose(QuicSpdyStream* stream) override;
+  void OnData(string data) override;
+  void IperfTester();
 
   // If the crypto handshake has not yet been confirmed, adds the data to the
   // queue of data to resend if the client receives a stateless reject.
@@ -213,6 +217,8 @@ class QuicSimpleClient : public QuicClientBase,
 
   //  Used by |helper_| to time alarms.
   QuicClock clock_;
+
+  LoopBack *lb;
 
   // Address of the server.
   const IPEndPoint server_address_;

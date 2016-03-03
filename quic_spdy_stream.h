@@ -43,6 +43,7 @@ class NET_EXPORT_PRIVATE QuicSpdyStream : public ReliableQuicStream {
 
     // Called when the stream is closed.
     virtual void OnClose(QuicSpdyStream* stream) = 0;
+    virtual void OnData(string data) = 0;
 
    protected:
     virtual ~Visitor() {}
@@ -61,6 +62,7 @@ class NET_EXPORT_PRIVATE QuicSpdyStream : public ReliableQuicStream {
 
   // ReliableQuicStream implementation
   void OnClose() override;
+  void OnData(string data);
 
   // This is the same as priority() and is being deprecated
   // TODO(alyssar) remove after Priority refactor.

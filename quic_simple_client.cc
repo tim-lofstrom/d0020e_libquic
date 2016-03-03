@@ -263,6 +263,26 @@ void QuicSimpleClient::Disconnect() {
   initialized_ = false;
 }
 
+void QuicSimpleClient::IperfTester(){
+
+
+	//inititiera LoopBackInterface
+
+	cout << "Initiating loopback interface" << endl;
+	lb = new net::tools::LoopBack();
+//	lb(new LoopBack());
+
+
+	// While (data from iperf)
+	StringPiece data = lb->ReadFromIPERF();
+	SendData(data);
+
+
+	WaitForData();
+
+
+}
+
 void QuicSimpleClient::SendData(StringPiece data){
 
 	QuicSpdyClientStream* stream = CreateReliableClientStream();
@@ -273,6 +293,15 @@ void QuicSimpleClient::SendData(StringPiece data){
 	}
 	stream->set_visitor(this);
 	stream->SendData(data);
+}
+
+void QuicSimpleClient::OnData(string data){
+
+	cout << "data: " << data << endl;
+
+	//Received data, send to iperf
+	lb->WriteToIPERF(data);
+
 }
 
 void QuicSimpleClient::MaybeAddQuicDataToResend(

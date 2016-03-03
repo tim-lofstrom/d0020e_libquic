@@ -59,8 +59,11 @@ void QuicSpdyClientStream::OnDataAvailable() {
 
 	// If the sequencer is closed, then all the body, including the fin, has been
 	// consumed.
-	OnFinRead();
+//	OnFinRead();
 	cout << "Client Received: " << data_ << endl;
+
+	OnData(data_);
+
 	return;
 }
 
